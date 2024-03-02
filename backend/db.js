@@ -3,7 +3,7 @@
 
 const express = require('express');
 const mongoose = require('mongoose'); //adding mongoose library in the file
-const { object } = require('zod');
+const { object, array } = require('zod');
 
 
 //connecting to a data base
@@ -23,7 +23,10 @@ const User = mongoose.model("User",userDbSchema)
 //creating subject model schema
 const subjectSchema = new mongoose.Schema({
     userName: String,
-    subjects: Array
+    subjects: {
+        type: Array,
+        default: []
+    }
 })
 
 //creating a model from the schema created

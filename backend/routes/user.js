@@ -136,15 +136,37 @@ userRouter.get("/bulk", async (req, res) => {
     res.json({
         user: users.map(user => ({
             username: user.userName,
-            firstName: user.firstName,
+            firstName: 
+            user.firstName,
             lastName: user.lastName,
             _id: user._id
         }))
     })
 })
 
-//adding subjects
+//update subjects
+userRouter.put('/update', async (req, res) => {
+    const userName = req.headers.email; // Access the userName from the request headers
+    const subjects = req.body.subjects; // Get the updated subjects array from the request body
+  
+    await Subjects.updateOne({ userName: userName }, { subjects: subjects });
+  
+    res.status(200).json({
+      message: "subjects updated successfully"
+    });
+});
 
+
+
+userRouter.get('/getSubs', async(req,res)=>{
+    const username = req.headers.email;
+    const user = await Subjects.findOne({userName:username})
+    res.send(user.subjects)
+
+})
+  
+  
+  
 
 
 module.exports = userRouter
