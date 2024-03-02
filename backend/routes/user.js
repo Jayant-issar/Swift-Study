@@ -4,7 +4,7 @@ const userRouter = express.Router();
 const zod = require('zod');
 const jwt = require('jsonwebtoken') 
 const JWT_SECRET = "pixel_prodgies_team"
-const {User} = require("../db"); //calling db from the api db.js
+const {User,Subjects} = require("../db"); //calling db from the api db.js
 const { authMiddleware } = require('../middleware')
 
 
@@ -45,6 +45,12 @@ userRouter.post('/signup', async (req, res)=>{
         return
 
     }
+    //adding in subject db
+    const subjects = await Subjects.create({
+        userName: req.body.userName,
+        subjects:[]
+    })
+
 
     // now the input is correct and the email is unique so adding the new user in the db
     const user = await User.create({
@@ -136,6 +142,8 @@ userRouter.get("/bulk", async (req, res) => {
         }))
     })
 })
+
+//adding subjects
 
 
 

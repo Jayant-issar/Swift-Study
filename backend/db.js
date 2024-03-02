@@ -20,7 +20,17 @@ const userDbSchema = new mongoose.Schema({
 //creating the model from the schema created (userDbSchema)
 const User = mongoose.model("User",userDbSchema)
 
+//creating subject model schema
+const subjectSchema = new mongoose.Schema({
+    userName: String,
+    subjects: Array
+})
+
+//creating a model from the schema created
+const Subjects = mongoose.model("Subjects",subjectSchema)
+
 
 module.exports = {
-    User
+    User,
+    Subjects
 }

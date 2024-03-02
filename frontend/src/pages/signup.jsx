@@ -51,7 +51,7 @@ export function Signup(){
                             console.log(response.data)
                             console.log(response.data.token);
                             if(response.data.message == "user created sucessfully"){
-                                navigate('/home')
+                                navigate('/home?email='+userName+'&name='+firstName)
                             }
                         }}>
                         Sign Up</button>
