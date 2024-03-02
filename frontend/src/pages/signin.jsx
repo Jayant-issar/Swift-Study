@@ -1,11 +1,22 @@
 import { useNavigate } from "react-router-dom"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import axios from "axios"
+import { set } from "mongoose"
 
 export function Signin(){
   const [userName, setUserName] = useState(" ")
   const [password, setPassword] = useState(" ")
+  const [firstName, setFirstName] = useState(" ")
   const navigate = useNavigate();
+
+  useEffect(()=>{
+    async function fetchData(){
+      const response = await axios.get("http://localhost:2323/user/getFirstName",{headers:{"email":userName}})
+      console.log(response.data)
+      setFirstName(response.data.firstName)
+    }
+    fetchData()
+  },[userName])
 
     return (
         <div className='h-screen bg-[#FCF5ED] flex justify-center items-center '>
@@ -30,13 +41,17 @@ export function Signin(){
                     </div>
                     <div className=" h-20 flex justify-center items-center">
                         <button className="bg-[#CE5A67] h-12 w-56 p-2 rounded-3xl font-serif text-[#080808] hover:bg-[#F4BF96]"
-                        onClick={async () => {
+                        onClick={async (e) => {
+                          e.preventDefault();
                           const response = await axios.post("http://localhost:2323/user/signin", {
                             userName,
                             password
                           });
                           localStorage.setItem("token", response.data.token);
                           console.log(response.data);
+                          if(response.data.message == "the user has sucessfully logedin"){
+                            navigate('/home?email='+userName+'&name='+firstName)
+                        }
                         }}
                          >
                         Sign In</button>

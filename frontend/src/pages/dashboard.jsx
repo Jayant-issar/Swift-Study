@@ -27,7 +27,7 @@ export function Dashboard() {
     }
 
     fetchData();
-  }, [subjectArr])
+  }, [])
 
   return (
     <div className=' min-h-screen bg-[#FCF5ED]'>

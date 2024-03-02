@@ -158,12 +158,37 @@ userRouter.put('/update', async (req, res) => {
 
 
 
-userRouter.get('/getSubs', async(req,res)=>{
-    const username = req.headers.email;
-    const user = await Subjects.findOne({userName:username})
-    res.send(user.subjects)
+userRouter.get('/getSubs', async (req, res) => {
+    try {
+      const username = req.headers.email;
+      const user = await Subjects.findOne({ userName: username });
+  
+      if (!user) {
+        return res.status(404).send("User not found");
+      }
+  
+      res.send(user.subjects);
+    } catch (error) {
+      console.error(error);
+      res.status(500).send("Internal server error");
+    }
+  });
+  
 
+  userRouter.get('/getFirstName', async(req,res)=>{
+    const username  = req.headers.email;
+    const user =  await User.findOne({userName:username})
+
+    if (!user) {
+        return res.status(404).send("User not found");
+    }
+
+    res.json({
+        firstName: user.firstName
+    })
+    console.log(user.firstName);
 })
+
   
   
   
