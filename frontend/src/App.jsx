@@ -1,10 +1,17 @@
 import { useState } from 'react'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
 
-function App() {
-  const [count, setCount] = useState(0)
+function App(){
 
-  
+  return(
+    <BrowserRouter>
+      <Routes>
+        <Route path='/home' />
+      </Routes>
+    </BrowserRouter>
+  )
 }
+
 
 export default App
