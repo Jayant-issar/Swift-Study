@@ -20,7 +20,7 @@ export const AddSubjectCard = ({onClose}) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await axios.get('http://localhost:2323/user/getSubs', config);
+      const response = await axios.get('http://localhost:2321/user/getSubs', config);
       console.log(response.data);
       setSubjectArr(response.data);
     }
@@ -33,7 +33,7 @@ export const AddSubjectCard = ({onClose}) => {
       let arr = subjectArr;
       arr.push(subjectName);
       setSubjectArr(arr);
-      await axios.put("http://localhost:2323/user/update", {"subjects": arr}, config);
+      await axios.put("http://localhost:2321/user/update", {"subjects": arr}, config);
       setIsRequestSent(true); // Set the flag to true after sending the request
       onClose();
     }

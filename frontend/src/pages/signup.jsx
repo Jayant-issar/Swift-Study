@@ -41,7 +41,7 @@ export function Signup(){
                     <div className=" h-20 flex justify-center items-center">
                         <button className="bg-[#CE5A67] h-12 w-56 p-2 rounded-3xl font-serif text-[#1F1717]" onClick={async ()=>{
                             //sending info back to the backend
-                            const response = await axios.post("http://localhost:2323/user/signup",{
+                            const response = await axios.post("http://localhost:2321/user/signup",{
                                 userName,
                                 firstName,
                                 lastName,

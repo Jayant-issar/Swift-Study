@@ -11,7 +11,7 @@ export function Signin(){
 
   useEffect(()=>{
     async function fetchData(){
-      const response = await axios.get("http://localhost:2323/user/getFirstName",{headers:{"email":userName}})
+      const response = await axios.get("http://localhost:2321/user/getFirstName",{headers:{"email":userName}})
       console.log(response.data)
       setFirstName(response.data.firstName)
     }
@@ -43,7 +43,7 @@ export function Signin(){
                         <button className="bg-[#CE5A67] h-12 w-56 p-2 rounded-3xl font-serif text-[#080808] hover:bg-[#F4BF96]"
                         onClick={async (e) => {
                           e.preventDefault();
-                          const response = await axios.post("http://localhost:2323/user/signin", {
+                          const response = await axios.post("http://localhost:2321/user/signin", {
                             userName,
                             password
                           });

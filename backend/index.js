@@ -10,7 +10,7 @@ app.use(express.json()) //enabling the json middleware to make sure we are able 
 // routing all the incoming requests t0 root router
 app.use('/',rootRouter)
 
-const port = 2323
+const port = 2321
 
 app.listen(port,()=>{
     console.log('the backend is listning on the port: '+port);

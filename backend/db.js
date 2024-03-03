@@ -33,6 +33,7 @@ const subjectSchema = new mongoose.Schema({
 const Subjects = mongoose.model("Subjects",subjectSchema)
 
 
+
 module.exports = {
     User,
     Subjects

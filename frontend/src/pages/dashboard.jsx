@@ -21,7 +21,7 @@ export function Dashboard() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await axios.get('http://localhost:2323/user/getSubs', config)
+      const response = await axios.get('http://localhost:2321/user/getSubs', config)
       console.log(response.data);
       setSubjectArr(response.data)
     }
@@ -39,7 +39,7 @@ export function Dashboard() {
         <div id="allsubjects">
           {
             subjectArr.map((subject) => (
-              <SubjectCard key={subject} subjectName={subject} />
+              <SubjectCard key={subject} subjectName={subject} buttonName={"Delete Subject"} firstName={userFirstName} />
             ))
           }
         </div>
